@@ -4,7 +4,6 @@ from PIL import Image
 
 
 def resize_images(input_directory, convert_rgb, final_size, output_directory):
-
     """
     Funcion que permite tratar y dar un tamaño especifico a las imagenes
     a traves de una estrategia,dando como retroalimentacion un mensaje
@@ -15,6 +14,7 @@ def resize_images(input_directory, convert_rgb, final_size, output_directory):
         print(files)
         count = 0
         for item in files:
+            count += 1
             path = os.path.join(input_directory, item)
             if os.path.isfile(path):
                 try:
@@ -23,15 +23,14 @@ def resize_images(input_directory, convert_rgb, final_size, output_directory):
                         image = image.convert("RGB")
 
                     try:
-                        #image_array = image_array / 255.
+                        # image_array = image_array / 255.
                         # Pillow
                         image = image.resize((int(final_size), int(final_size)), Image.ANTIALIAS)
                         image.save(os.path.join(output_directory, item), 'PNG', quality=100)
                     except Exception as e:
                         print(e)
 
-                    if count % 10000 == 0:
-                        print("Iteracion {}".format(count))
+                    print("Iteracion {}".format(count))
                 except Exception as e:
                     print(e)
             else:
