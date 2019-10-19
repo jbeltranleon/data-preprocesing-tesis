@@ -25,7 +25,7 @@ def resize_images(input_directory, convert_rgb, final_size, output_directory):
                     try:
                         #image_array = image_array / 255.
                         # Pillow
-                        image = image.resize((224, 224), Image.ANTIALIAS)
+                        image = image.resize((int(final_size), int(final_size)), Image.ANTIALIAS)
                         image.save(os.path.join(output_directory, item), 'PNG', quality=100)
                     except Exception as e:
                         print(e)
